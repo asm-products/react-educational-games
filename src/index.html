@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script>
+curl = {
+	paths: {
+		'underscore': 'lib/underscore/underscore-min.js',
+	}
+}
+</script>
+<script src="lib/curl/dist/curl-for-jQuery/curl.js"></script>
+<script src="lib/zeptojs/src/zepto.js"></script>
+<script src="lib/zeptojs/src/event.js"></script>
+<script src="lib/crafty/dist/crafty.js"></script>
+<!-- Game.js holds some basic settings and the loading scene -->
+<!-- Loading should be really quick to load, and give the user something to -->
+<!-- look at while it loads the other scripts. All other scripts are concatinated -->
+<!-- and loaded by the Loading Scene -->
+<script src="js/game.js"></script>
+<script src="js/all.js"></script>
+<script>
+	window.addEventListener('load', function(){
+		var options = {}
+
+		// Figure out the base path of the game
+		// Using a basename lets us be specific about which files we include
+		// and avoids calls to CraftyComponents
+		var path = document.location.href;
+		options.baseUrl = path.substr(0, path.lastIndexOf('/'));
+
+		Game.log('debug', 'Base Path: ' + options.baseUrl);
+
+		// Figure out which audio format to load
+		if (Crafty.audio.supports('ogg')) {
+			options.audioExtension = 'ogg';
+		} else if (Crafty.audio.supports('wav')) {
+			options.audioExtension = 'wav';
+		} else if (Crafty.audio.supports('mp3')) {
+			options.audioExtension = 'mp3';
+		} else {
+			// No audio support
+			options.audioExtension = false;
+		}
+
+		Game.log('debug', 'Audio Extension: ' + options.audioExtension);
+
+		// Lets Play!
+		Game.load(options);
+	});
+</script>
+</head>
+<body>
+	<div id='middle' class='row'>
+		<div id='column_left' class='column col-xs-3'>
+			<div id='player_1' class='player btn btn-info btn-block'>
+				<div class='player_name'>One</div>
+				<div class='player_score'>0</div>
+			</div>
+			<div id='player_3' class='player btn btn-info btn-block'>
+				<div class='player_name'>Three</div>
+				<div class='player_score'>0</div>
+			</div>
+		</div>
+		<div id='arena' class='column col-xs-6'>
+
+		</div>
+		<div id='column_right' class='column col-xs-3'>
+			<div id='player_2' class='player btn btn-info btn-block'>
+				<div class='player_name'>Two</div>
+				<div class='player_score'>0</div>
+			</div>
+			<div id='player_4' class='player btn btn-info btn-block'>
+				<div class='player_name'>Four</div>
+				<div class='player_score'>0</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
