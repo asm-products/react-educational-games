@@ -11,9 +11,9 @@
 		$('#middle > .column').css('height', height + 'px');
 	}
 	$(function(){
-		var arena = $('#arena');
 		// Bind to some key-presses
 		$(document).on('keydown', function(e){
+			var arena = $('#arena');
 			switch (e.keyCode) {
 			case Game.controls.P1.fire:
 				// Player 1 Fire
@@ -33,16 +33,17 @@
 				break;
 			}
 		});
-		$('#player_1').on('touchstart mousedown', function(e){
+		$(document).on('#player_1', 'touchstart mousedown', function(e){
+			console.log("GI");
 			arena.trigger('reactFire', [ 1 ]);
 		});
-		$('#player_2').on('touchstart mousedown', function(e){
+		$(document).on('#player_2', 'touchstart mousedown', function(e){
 			arena.trigger('reactFire', [ 2 ]);
 		});
-		$('#player_3').on('touchstart mousedown', function(e){
+		$(document).on('#player_3', 'touchstart mousedown', function(e){
 			arena.trigger('reactFire', [ 3 ]);
 		});
-		$('#player_4').on('touchstart mousedown', function(e){
+		$(document).on('#player_4', 'touchstart mousedown', function(e){
 			arena.trigger('reactFire', [ 4 ]);
 		});
 	});

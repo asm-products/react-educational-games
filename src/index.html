@@ -15,6 +15,7 @@ curl = {
 <script src="lib/zeptojs/src/zepto.js"></script>
 <script src="lib/zeptojs/src/event.js"></script>
 <script src="lib/crafty/dist/crafty.js"></script>
+<script src="lib/ractive.min.js"></script>
 <!-- Game.js holds some basic settings and the loading scene -->
 <!-- Loading should be really quick to load, and give the user something to -->
 <!-- look at while it loads the other scripts. All other scripts are concatinated -->
@@ -49,34 +50,44 @@ curl = {
 
 		// Lets Play!
 		Game.load(options);
+
+		var ractive = new Ractive({
+			el: '#output',
+			template: '#template',
+			data: Game.data
+		});
 	});
 </script>
 </head>
 <body>
-	<div id='middle' class='row'>
-		<div id='column_left' class='column col-xs-3'>
-			<div id='player_1' class='player btn btn-info btn-block'>
-				<div class='player_name'>One</div>
-				<div class='player_score'>0</div>
+	<div id='output'></div>
+	<script id='template' type='text/ractive'>
+		<div id='middle' class='row'>
+			<div id='column_left' class='column col-xs-3'>
+				<div id='player_1' class='player btn btn-info btn-block'>
+					<div class='player_name'>One</div>
+					<div class='player_score'>{{ scores.p1 }}</div>
+				</div>
+				<div id='player_3' class='player btn btn-info btn-block'>
+					<div class='player_name'>Three</div>
+					<div class='player_score'>0</div>
+				</div>
 			</div>
-			<div id='player_3' class='player btn btn-info btn-block'>
-				<div class='player_name'>Three</div>
-				<div class='player_score'>0</div>
-			</div>
-		</div>
-		<div id='arena' class='column col-xs-6'>
+			<div id='arena' class='column col-xs-6'>
 
-		</div>
-		<div id='column_right' class='column col-xs-3'>
-			<div id='player_2' class='player btn btn-info btn-block'>
-				<div class='player_name'>Two</div>
-				<div class='player_score'>0</div>
 			</div>
-			<div id='player_4' class='player btn btn-info btn-block'>
-				<div class='player_name'>Four</div>
-				<div class='player_score'>0</div>
+			<div id='column_right' class='column col-xs-3'>
+				<div id='player_2' class='player btn btn-info btn-block'>
+					<div class='player_name'>Two</div>
+					<div class='player_score'>0</div>
+				</div>
+				<div id='player_4' class='player btn btn-info btn-block'>
+					<div class='player_name'>Four</div>
+					<div class='player_score'>0</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</script>
+
 </body>
 </html>
