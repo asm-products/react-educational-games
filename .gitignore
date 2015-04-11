@@ -1,2 +1,6 @@
+*.sw*
+*~
+build/
+bin/
 node_modules/
-public/
+vendor/

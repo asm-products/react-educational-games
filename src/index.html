@@ -1,44 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-<script src="lib/angular/angular.min.css"></script>
-<script src="app.js"></script>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<script>
-curl = {
-	paths: {
-		'underscore': 'lib/underscore/underscore-min.js',
-	}
-}
-</script>
-</head>
-<body>
-	<div id='middle' class='row'>
-		<div id='column_left' class='column col-xs-3'>
-			<div id='player_1' class='player btn btn-info btn-block'>
-				<div class='player_name'>One</div>
-				<div class='player_score'>{{ scores.p1 }}</div>
-			</div>
-			<div id='player_3' class='player btn btn-info btn-block'>
-				<div class='player_name'>Three</div>
-				<div class='player_score'>0</div>
-			</div>
-		</div>
-		<div id='arena' class='column col-xs-6'>
+<html ng-app="reactGame" ng-controller="MainController">
+  <head>
+  <meta charset="utf-8">
+    <title ng-bind="pageTitle"></title>
 
-		</div>
-		<div id='column_right' class='column col-xs-3'>
-			<div id='player_2' class='player btn btn-info btn-block'>
-				<div class='player_name'>Two</div>
-				<div class='player_score'>0</div>
-			</div>
-			<div id='player_4' class='player btn btn-info btn-block'>
-				<div class='player_name'>Four</div>
-				<div class='player_score'>0</div>
-			</div>
-		</div>
-	</div>
-</body>
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+  </head>
+  <body>
+    <div class="container" ui-view="main"></div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          React Games
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
